@@ -12,6 +12,7 @@ import { MdOutlineSettings } from "react-icons/md";
 import { GiPlantWatering } from "react-icons/gi";
 import { MdInfoOutline } from "react-icons/md";
 import { WiDaySunny } from "react-icons/wi"; // Uncommented import
+import { GiFarmer } from "react-icons/gi";
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -56,6 +57,10 @@ const Header = () => {
           <Link as={RouterLink} to="/disease">
             <GiPlantWatering size={24} />
           </Link>
+          <Link as={RouterLink} to="/cropform">
+            <GiFarmer size={24} />
+          </Link>
+
           <Link as={RouterLink} to="/chat">
             <BsFillChatQuoteFill size={20} />
           </Link>

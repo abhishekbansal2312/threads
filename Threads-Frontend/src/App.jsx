@@ -15,6 +15,8 @@ import Disease from "./pages/Disease";
 import Fertilizer from "./pages/Fertilizer";
 import About from "./pages/About";
 import Weather from "./pages/Weather";
+import CropForm from "./pages/CropForm";
+import CropResult from "./pages/CropResult";
 
 function App() {
   const user = useRecoilValue(userAtom);
@@ -32,7 +34,6 @@ function App() {
             path="/auth"
             element={!user ? <AuthPage /> : <Navigate to="/" />}
           />
-
           <Route
             path="/:username"
             element={
@@ -61,6 +62,15 @@ function App() {
             path="/disease"
             element={user ? <Disease /> : <Navigate to="/auth" />}
           />
+          <Route
+            path="/cropform"
+            element={user ? <CropForm /> : <Navigate to="/auth" />}
+          />
+          <Route
+            path="/result"
+            element={user ? <CropResult /> : <Navigate to="/auth" />}
+          />
+
           <Route
             path="/about"
             element={user ? <About /> : <Navigate to="/auth" />}

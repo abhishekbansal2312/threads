@@ -15,7 +15,7 @@ MODEL_DIR = os.path.join('backend', 'Model_assest')  # Adjusted for project stru
 
 # Load disease information
 try:
-    disease_info = pd.read_csv('Model_assest/disease_info.csv')
+    disease_info = pd.read_csv('Model_assest/disease_info.csv', skipinitialspace=True)
 except FileNotFoundError:
     print("disease_info.csv not found. Ensure the path is correct.")
     exit(1)
