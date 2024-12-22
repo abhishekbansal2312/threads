@@ -10,7 +10,6 @@ import {
   Spinner,
   Button,
   Icon,
-  useColorMode,
   useColorModeValue,
   Grid,
   GridItem,
@@ -63,7 +62,7 @@ const Weather = () => {
   const [error, setError] = useState("");
   const [locationError, setLocationError] = useState("");
   const [localTime, setLocalTime] = useState(new Date());
-  const { colorMode } = useColorMode();
+
   const bgColor = useColorModeValue("gray.50", "gray.800");
   const textColor = useColorModeValue("gray.800", "white");
 
@@ -93,7 +92,6 @@ const Weather = () => {
         const { latitude, longitude } = position.coords;
 
         try {
-          // Fetch forecast data (for hourly data)
           const forecastResponse = await axios.get(
             `${apiforecast.base}?lat=${latitude}&lon=${longitude}&appid=${apiforecast.key}&units=metric`
           );
@@ -126,17 +124,15 @@ const Weather = () => {
       setHourlyData([]);
 
       try {
-        // Fetch current weather data for the searched location
         const weatherResponse = await axios.get(
           `${api.base}weather?q=${query}&units=metric&APPID=${api.key}`
         );
         setWeather(weatherResponse.data);
 
-        // Fetch hourly forecast data for the searched location
         const forecastResponse = await axios.get(
           `${apiforecast.base}?lat=${weatherResponse.data.coord.lat}&lon=${weatherResponse.data.coord.lon}&appid=${apiforecast.key}&units=metric`
         );
-        setHourlyData(forecastResponse.data.list.slice(0, 8)); // Get the next 8 intervals (next 24 hours)
+        setHourlyData(forecastResponse.data.list.slice(0, 8));
 
         setQuery("");
       } catch (err) {

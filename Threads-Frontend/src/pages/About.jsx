@@ -434,7 +434,10 @@ const About = () => {
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>Ans. {item.answer}</AccordionPanel>
+
+              <AccordionPanel color="teal" pb={4}>
+                Ans. {item.answer}
+              </AccordionPanel>
             </AccordionItem>
           ))}
         </Accordion>

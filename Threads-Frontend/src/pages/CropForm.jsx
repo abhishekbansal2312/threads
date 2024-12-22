@@ -36,6 +36,11 @@ const PredictForm = () => {
   const navigate = useNavigate(); // Navigate to the result page
   const { colorMode, toggleColorMode } = useColorMode(); // Hook for dark mode
 
+  const api = {
+    key: "fcc8de7015bbb202209bbf0261babf4c",
+    base: "https://api.openweathermap.org/data/2.5/",
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -44,6 +49,23 @@ const PredictForm = () => {
     }));
     // Clear previous error when user starts typing
     if (error) setError(null);
+  };
+
+  const handleFetchWeather = async () => {
+    try {
+      const response = await axios.get(
+        `${api.base}weather?q=London&appid=${api.key}&units=metric`
+      );
+      const { temp, humidity } = response.data.main;
+
+      setFormData((prevState) => ({
+        ...prevState,
+        Temperature: Math.floor(temp),
+        Humidity: humidity,
+      }));
+    } catch (err) {
+      setError("Error fetching weather data");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -60,6 +82,38 @@ const PredictForm = () => {
       !formData.Rainfall
     ) {
       setError("All fields are required!");
+      return;
+    }
+
+    setFormData;
+
+    // Range validation
+    if (formData.Nitrogen < 0 || formData.Nitrogen > 100) {
+      setError("Nitrogen must be between 0 and 100!");
+      return;
+    }
+    if (formData.Phosphorus < 0 || formData.Phosphorus > 100) {
+      setError("Phosphorus must be between 0 and 100!");
+      return;
+    }
+    if (formData.Potassium < 0 || formData.Potassium > 100) {
+      setError("Potassium must be between 0 and 100!");
+      return;
+    }
+    if (formData.Temperature < -30 || formData.Temperature > 50) {
+      setError("Temperature must be between -30°C and 50°C!");
+      return;
+    }
+    if (formData.Humidity < 0 || formData.Humidity > 100) {
+      setError("Humidity must be between 0% and 100%!");
+      return;
+    }
+    if (formData.pH < 0 || formData.pH > 14) {
+      setError("pH level must be between 0 and 14!");
+      return;
+    }
+    if (formData.Rainfall < 0 || formData.Rainfall > 500) {
+      setError("Rainfall must be between 0 and 500 mm!");
       return;
     }
 
@@ -233,6 +287,16 @@ const PredictForm = () => {
           </FormControl>
         </SimpleGrid>
 
+        <Button
+          type="button"
+          colorScheme="blue"
+          width="full"
+          mt={4}
+          onClick={handleFetchWeather}
+        >
+          Fetch Weather
+        </Button>
+
         <Button type="submit" colorScheme="teal" width="full" mt={4}>
           Submit
         </Button>
@@ -245,14 +309,14 @@ const PredictForm = () => {
         >
           Reset
         </Button>
-      </VStack>
 
-      {error && (
-        <Alert status="error" mt={4}>
-          <AlertIcon />
-          {error}
-        </Alert>
-      )}
+        {error && (
+          <Alert status="error" width="full">
+            <AlertIcon />
+            {error}
+          </Alert>
+        )}
+      </VStack>
     </Box>
   );
 };
