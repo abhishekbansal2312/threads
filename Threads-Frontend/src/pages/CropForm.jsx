@@ -10,14 +10,12 @@ import {
   Input,
   Heading,
   VStack,
-  Text,
   Alert,
+  Flex,
   AlertIcon,
   SimpleGrid,
   Tooltip,
   useColorMode,
-  useBreakpointValue,
-  Switch,
 } from "@chakra-ui/react";
 
 const PredictForm = () => {
@@ -56,11 +54,12 @@ const PredictForm = () => {
       const response = await axios.get(
         `${api.base}weather?q=London&appid=${api.key}&units=metric`
       );
-      const { temp, humidity } = response.data.main;
+      const { temp, humidity, temp_min, temp_max } = response.data.main;
+      const averageTemp = (temp + temp_min + temp_max) / 3;
 
       setFormData((prevState) => ({
         ...prevState,
-        Temperature: Math.floor(temp),
+        Temperature: Math.floor(averageTemp),
         Humidity: humidity,
       }));
     } catch (err) {
@@ -144,13 +143,14 @@ const PredictForm = () => {
       Rainfall: "",
       id: Cookies.get("token"),
     });
-    setError(null); // Clear error on reset
+    setError(null);
   };
 
   return (
     <Box
       maxW="900px"
       mx="auto"
+      mt={5}
       p={6}
       bg={colorMode === "light" ? "gray.50" : "gray.700"}
       borderRadius="lg"
@@ -287,28 +287,29 @@ const PredictForm = () => {
           </FormControl>
         </SimpleGrid>
 
-        <Button
-          type="button"
-          colorScheme="blue"
-          width="full"
-          mt={4}
-          onClick={handleFetchWeather}
-        >
-          Fetch Weather
-        </Button>
+        <Flex direction="row" justify="space-between" width="full" mt={4}>
+          <Button
+            type="button"
+            colorScheme="blue"
+            width="30%"
+            onClick={handleFetchWeather}
+          >
+            Fetch Weather
+          </Button>
 
-        <Button type="submit" colorScheme="teal" width="full" mt={4}>
-          Submit
-        </Button>
-        <Button
-          type="button"
-          colorScheme="gray"
-          width="full"
-          mt={2}
-          onClick={handleReset}
-        >
-          Reset
-        </Button>
+          <Button type="submit" colorScheme="teal" width="30%">
+            Submit
+          </Button>
+
+          <Button
+            type="button"
+            colorScheme="gray"
+            width="30%"
+            onClick={handleReset}
+          >
+            Reset
+          </Button>
+        </Flex>
 
         {error && (
           <Alert status="error" width="full">

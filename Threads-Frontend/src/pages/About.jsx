@@ -269,7 +269,12 @@ const About = () => {
       >
         Our Services
       </Heading>
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5} mt={5}>
+      <SimpleGrid
+        columns={{ base: 1, md: 2, lg: 3 }}
+        spacing={5}
+        mt={5}
+        margin={5}
+      >
         {/* Disease Identification */}
         <Box
           p={5}

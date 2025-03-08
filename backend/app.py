@@ -21,7 +21,7 @@ except FileNotFoundError:
     exit(1)
 
 # Set device for model
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # gpu or cpu
 
 # Load pretrained model
 try:

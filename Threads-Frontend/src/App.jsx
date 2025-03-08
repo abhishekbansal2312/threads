@@ -18,12 +18,14 @@ import Weather from "./pages/Weather";
 import CropForm from "./pages/CropForm";
 import CropResult from "./pages/CropResult";
 
+import Fertiliser from "./pages/Fertiliser";
+
 function App() {
   const user = useRecoilValue(userAtom);
   const { pathname } = useLocation();
   return (
-    <Box position={"relative"} w="full">
-      <Container maxW={pathname === "/"}>
+    <Box position={"relative"} w="100vw" h="100vh" m="0" p="0">
+      <Container maxW="full" p="0" m="0">
         <Header />
         <Routes>
           <Route
@@ -65,6 +67,10 @@ function App() {
           <Route
             path="/cropform"
             element={user ? <CropForm /> : <Navigate to="/auth" />}
+          />
+          <Route
+            path="/fertiliser"
+            element={user ? <Fertiliser /> : <Navigate to="/auth" />}
           />
           <Route
             path="/result"

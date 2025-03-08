@@ -11,6 +11,7 @@ import { BsFillChatQuoteFill } from "react-icons/bs";
 import { MdOutlineSettings, MdInfoOutline } from "react-icons/md";
 import { GiPlantWatering, GiFarmer } from "react-icons/gi";
 import { WiDaySunny } from "react-icons/wi";
+import { GiChemicalDrop } from "react-icons/gi"; // Added for fertilizer icon
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -65,6 +66,9 @@ const Header = () => {
           </Link>
           <Link as={RouterLink} to="/cropform">
             <GiFarmer size={24} />
+          </Link>
+          <Link as={RouterLink} to="/fertiliser">
+            <GiChemicalDrop size={24} />
           </Link>
           <Link as={RouterLink} to="/chat">
             <BsFillChatQuoteFill size={20} />
