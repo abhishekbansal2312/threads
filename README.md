@@ -1,120 +1,360 @@
-# [CropMate - MERN, React Native, Flask, Machine Learning](https://crop-mate.vercel.app/)
+# 🌱 KrishiCare - Comprehensive Agricultural Platform
 
-> CropMate is a comprehensive agricultural project aimed at revolutionizing farming practices by leveraging technology and data-driven insights. It consists of several components, including a React web application, a mobile application developed using React Native, a server-side MERN Stack backend, and ensembled machine learning model for  precise recommendation for the crops based on soil parameters.
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io/)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
 
-## Features
-- **Crop Recommendation**: Utilizes machine learning algorithms to provide personalized crop recommendations based on soil and environmental data.
-- **RestAPIs**: Single API calls for both web app and mobile app
-- **Secure**: The application is secured with Brypt and JWT libraries.
-- **Community Forum**: Facilitates knowledge sharing and collaboration among farmers through a dedicated forum.
-- **User Authentication**: Users can sign up, log in, and log out securely.
+![image](https://github.com/user-attachments/assets/2d78104e-b1da-4ca0-a7d3-0a0362e1eef7)
 
-## Technologies Used
+## 📋 Table of Contents
+- [Overview](#-overview)
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Technologies Used](#-technologies-used)
+- [Key Project Components](#-key-project-components)
+- [ML Models](#-ml-models)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [API Documentation](#-api-documentation)
+- [Future Enhancements](#-future-enhancements)
+- [Contributors](#-contributors)
+- [License](#-license)
 
-- **MongoDB**: NoSQL database used for storing user data, posts, and other information.
-- **Express.js**: Web application framework for building APIs and handling HTTP requests.
-- **React.js**: Frontend library for building user interfaces.
-- **Node.js**: JavaScript runtime environment used for server-side logic.
-- **Mongoose**: MongoDB object modeling tool for Node.js.
-- **React Native**: UI software framework used to develop applications for Android, iOS.
-- **JWT (JSON Web Tokens)**: Used for user authentication and authorization.
-- **Bcrypt**: Used for encrypting user passwords.
-- **Mongoose**: MongoDB object modeling tool for Node.js.
-- **Flask**: Micro web framework written in Python used to load and run the ML model and interact with it.
+## 🌟 Overview
 
+KrishiCare is a comprehensive agricultural platform designed to assist farmers and agricultural enthusiasts across India. The application combines social networking capabilities with advanced machine learning models for crop recommendations, plant disease detection, and weather forecasting. By leveraging AI technology, KrishiCare aims to improve agricultural productivity, sustainability, and knowledge sharing among farming communities.
 
-## Project Structure
-The project is organized into the following folders:
+## 🚀 Features
 
-- **App**: Contains the code for the mobile application developed using Expo and React Native.
-- **Server**: Houses the backend server implementation using the MERN stack (MongoDB, Express.js, React.js, Node.js).
-- **Client**: Contains the code for the web application frontend, developed using React.js.
-- **ML**: Includes the machine learning module responsible for crop recommendation, implemented using Python.
+### 🧑‍🤝‍🧑 Social Networking
+- User profiles and authentication (signup, login, logout)
+- Post creation, sharing, liking, and replying
+- Feed customization based on followed users
+- Profile viewing and user discovery
+- Real-time messaging and conversations
+- Account management (update profile, freeze account)
 
-<h3>How to run</h3>
-To run CropMate on your local machine, follow these steps:
+### 🧠 AI-Powered Solutions
+- 🌾 Crop recommendation system based on soil and climate parameters
+- 🍃 Plant disease detection using image recognition
+- 🌡️ Weather forecasting for agricultural planning
+- 🧪 Fertilizer recommendation based on crop and soil type
 
-1. Clone the Repository
-   ```bash
-   git clone https://github.com/your-username/cropmate.git
-   cd cropmate
-   ```
+### 📊 Data Analytics
+- Agricultural data visualization
+- Historical data tracking
+- Performance metrics
+- Seasonal recommendations
 
+## 🗂️ Project Structure
 
-2. Install Dependencies
-- **Server**
-   ```bash
-   cd server
-   npm install
-   ```
+```
+└── KrishiCare/
+    ├── backend/                  # Flask backend for disease detection
+    │   ├── app.py                # Plant disease detection API
+    │   ├── Model_assest/         # ML models and disease information
+    │   │   ├── disease_info.csv  # Information about plant diseases
+    │   │   └── model.pth         # PyTorch model for disease detection
+    │   └── uploads/              # User uploaded plant images
+    │
+    ├── ML/                       # Machine Learning components
+    │   ├── app.py                # Crop recommendation API
+    │   ├── model.pkl             # Trained ML model for crop recommendation
+    │   ├── minmaxscaler.pkl      # Scaler for data normalization
+    │   ├── standscaler.pkl       # Standard scaler for data normalization
+    │   └── dataset/              # Training datasets
+    │       └── Crop_recommendation.csv  # Dataset for crop recommendations
+    │
+    ├── server/                   # Node.js server (Main API)
+    │   ├── index.js              # Main server entry point
+    │   ├── Controllers/          # API controllers
+    │   ├── Models/               # Database models
+    │   ├── Routes/               # API routes
+    │   ├── Middlewares/          # Server middlewares
+    │   └── config/               # Database configuration
+    │
+    ├── Threads-Backend/          # Messaging backend
+    │   ├── index.js              # Messaging server entry point
+    │   ├── controllers/          # Message controllers
+    │   ├── models/               # Message and conversation models
+    │   ├── routes/               # Message API routes
+    │   ├── socket/               # WebSocket implementation
+    │   ├── cron/                 # Scheduled tasks
+    │   ├── middlewares/          # Server middlewares
+    │   └── utils/                # Utility functions
+    │
+    └── Threads-Frontend/         # React frontend application
+        ├── src/
+        │   ├── App.jsx           # Main application component
+        │   ├── components/       # UI components
+        │   ├── pages/            # Application pages
+        │   ├── hooks/            # Custom React hooks
+        │   ├── atoms/            # Recoil state atoms
+        │   └── context/          # React context providers
+        └── public/               # Static assets
+```
 
-- **Client**
-   ```bash
-  cd client
-  npm install
-   ````
+## 💻 Technologies Used
 
-- **App**
-   ```bash
-   cd app
-  npm install
-   ````
+### Frontend:
+- ⚛️ React.js for UI components
+- 🔄 Recoil for state management
+- 🎨 CSS for styling
+- 📱 Responsive design for mobile/desktop
 
-- **ML**
-   ```bash
-   pip install numpy
-   pip install pandas
-   pip install sklearn
-   pip install requests
-   pip install pickle
-   ````
+### Backend:
+- 🟢 Node.js & Express.js for API development
+- 🐍 Python & Flask for ML model deployment
+- 🔄 Socket.io for real-time messaging
+- 🔒 JWT for authentication
 
-4. Set Up MongoDB
-Ensure you have MongoDB installed and running on your system. Update the MongoDB connection string in the server code if necessary.
+### Database:
+- 🍃 MongoDB for data storage
+- 🔄 Mongoose for ODM
 
-5. Start the Servers
-- Server
-  ```bash
-  cd server
-  npm start
-  ````
-  
-- **Client**
-   ```bash
-  cd client
-  npm run dev
-   ````
+### Machine Learning:
+- 🔮 PyTorch for plant disease detection
+- 🌿 ResNet18 model architecture for image classification
+- 📊 Scikit-learn for crop recommendation
+- 🌱 Random Forest classifier for crop prediction
+- 📈 Pandas for data preprocessing
 
-- **App**
-   ```bash
-   cd app
-   npx expo start
-   ````
+### DevOps:
+- 🔄 Git & GitHub for version control
 
-- **ML**
-   ```bash
-   cd ml
-   python app.py 
-   ````
+## 💡 Key Project Components
 
-6. Access the Application
-Web App: Open your web browser and go to http://localhost:3000.
-Mobile App: Use the Expo app to scan the QR code generated after running the Expo server.
+### User Authentication System
+The authentication system uses JWT (JSON Web Tokens) for secure authentication and session management. It includes:
 
-![image](https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/8f6ccc75-c67a-4b00-a0e9-a1e5e089bb32)
----------------
-![image](https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/34032b31-29ae-42bf-81c9-1d32d62b04bf)
------------------
-![image](https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/1cc11d43-d88c-438a-8066-168d07ef1ede)
---------------------
-![image](https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/4b09684f-2c10-45cc-adfe-9ad133a4e70d)
-----------------
-<img src="https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/87ad58a3-8221-4626-bfdc-268f19cb4873" width="249" height="490" />
-<img src="https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/e351277b-714f-41b4-8219-11301491d414" width="250" height="490" />
-<img src="https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/160b6287-e1dd-4d42-9cb8-e13d28021a46" width="250" height="490" />
-<img src="https://github.com/SanjuPSaji/CropMate-MERN-React-Native-Flask-Machine-Learning/assets/115170042/00d619db-cb70-4bba-b846-a8225aa68026" width="249" height="490" />
+- User registration with validation
+- Secure login with password hashing
+- Token generation and validation
+- Route protection middleware
+- Account freezing functionality
 
+### Social Networking Features
+The social networking component enables community building among farmers:
 
+- Follow/unfollow system to connect with other users
+- Feed algorithm to display posts from followed users
+- Engagement through likes and replies
+- User suggestion system to discover relevant accounts
+- Profile customization and updates
 
+### Messaging System
+Real-time messaging allows for direct communication:
 
+- Socket.io implementation for instant message delivery
+- Conversation tracking and history
+- User online status indicators
+- Message read receipts
+- Conversation list management
+
+### Crop Recommendation Engine
+The ML-powered crop recommendation system:
+
+- Takes environmental and soil parameters as input
+- Uses Random Forest classifier to predict suitable crops
+- Returns top 5 recommendations ranked by probability
+- Stores recommendations in user history
+- Provides crop-specific information
+
+### Plant Disease Detection
+The computer vision-based disease detection:
+
+- Uses ResNet18 model fine-tuned on plant disease dataset
+- Processes uploaded plant images
+- Identifies diseases with high accuracy
+- Provides detailed disease information
+- Recommends treatment and prevention methods
+
+### Weather Services
+Weather forecasting integration:
+
+- Current weather conditions
+- 7-day forecast
+- Agricultural relevance indicators
+- Season-specific recommendations
+
+## 🧠 ML Models
+
+### Plant Disease Detection
+- Based on a fine-tuned ResNet18 architecture
+- Transfer learning from pre-trained weights
+- Trained on a dataset of diverse plant leaf images
+- Capable of identifying 38 different plant diseases
+- Provides disease description and treatment recommendations from disease_info.csv
+
+### Crop Recommendation System
+- Uses Random Forest Classifier with high accuracy
+- Takes inputs including:
+  - N, P, K values (soil nutrient levels)
+  - Temperature (in Celsius)
+  - Humidity (percentage)
+  - pH value of soil
+  - Rainfall (in mm)
+- Recommends top 5 suitable crops for given conditions
+- Integrated with the main application to save recommendations by user ID
+
+<div align="center">
+  <img src="https://via.placeholder.com/700x350" alt="ML Models"/>
+</div>
+
+## 🔧 Installation
+
+### Clone the repository
+```bash
+git clone https://github.com/abhishekbansal2312/threads.git
+cd threads
+```
+
+### Set up the Node.js server
+```bash
+cd server
+npm install
+# Create .env file with:
+# MONGODB_CONNECTION_STRING=your_mongodb_uri
+# JWT_SECRET=your_jwt_secret
+# PORT=4999
+npm start
+```
+
+### Set up the Threads-Backend
+```bash
+cd ../Threads-Backend
+npm install
+# Create .env file with similar MongoDB and JWT settings
+# PORT=5000
+npm start
+```
+
+### Set up the ML service
+```bash
+cd ../ML
+pip install -r requirements.txt
+# Required packages: Flask, numpy, pandas, scikit-learn, flask-cors, requests
+python app.py  # Runs on port 5002
+```
+
+### Set up the Disease Detection backend
+```bash
+cd ../backend
+pip install -r requirements.txt
+# Required packages: Flask, torch, torchvision, PIL, pandas, flask-cors
+python app.py  # Runs on default Flask port 5000
+```
+
+### Set up the frontend
+```bash
+cd ../Threads-Frontend
+npm install
+# Create .env file with:
+# VITE_API_BASE_URL=http://localhost:4999
+# VITE_SOCKET_SERVER_URL=http://localhost:5000
+npm run dev  # Starts development server
+```
+
+## 📱 Usage
+
+### Account Setup
+- Register an account with your details
+- Login with your credentials
+- Set up your profile with agricultural interests and location
+
+### Social Features
+- Follow other farmers and agriculture experts
+- Create posts about farming practices, questions, or successes
+- Engage with community by liking and replying to posts
+- Send direct messages to other users for private discussions
+
+### ML-Based Agricultural Tools
+#### Crop Recommendation:
+- Navigate to Crop Recommendation page
+- Enter soil parameters (N, P, K values)
+- Enter environmental data (temperature, humidity, pH, rainfall)
+- Submit to receive top 5 recommended crops
+
+#### Disease Detection:
+- Navigate to Plant Disease page
+- Upload a clear image of the affected plant leaf
+- System will identify the disease
+- Review detailed information about the disease and treatment options
+
+#### Weather Services:
+- Check current and forecasted weather for your region
+- Plan agricultural activities based on weather conditions
+
+<div align="center">
+  <img src="https://via.placeholder.com/700x350" alt="Application Usage"/>
+</div>
+
+## 📝 API Documentation
+
+### Authentication Endpoints
+- `POST /api/auth/signup`: Register a new user
+- `POST /api/auth/login`: Login existing user
+- `POST /api/auth/logout`: Logout current user
+
+### User Management Endpoints
+- `GET /api/users/profile/:query`: Get user profile by username or query
+- `GET /api/users/suggested`: Get suggested users to follow
+- `POST /api/users/follow/:id`: Follow or unfollow a user
+- `PUT /api/users/update/:id`: Update user profile information
+- `PUT /api/users/freeze`: Freeze user account
+
+### Post Endpoints
+- `GET /api/posts/feed`: Get posts from followed users
+- `GET /api/posts/:id`: Get specific post
+- `GET /api/posts/user/:username`: Get posts by a specific user
+- `POST /api/posts/create`: Create a new post
+- `DELETE /api/posts/:id`: Delete a post
+- `PUT /api/posts/like/:id`: Like or unlike a post
+- `PUT /api/posts/reply/:id`: Reply to a post
+
+### Messaging Endpoints
+- `GET /api/messages/conversations`: Get all user conversations
+- `GET /api/messages/:otherUserId`: Get messages with a specific user
+- `POST /api/messages/`: Send a message to another user
+
+### ML Endpoints
+- `POST /predict`: Crop recommendation API (ML service)
+  - Input: Nitrogen, Phosphorus, Potassium, Temperature, Humidity, pH, Rainfall, id
+  - Output: Top 5 recommended crops
+- `POST /predict`: Disease detection API (backend)
+  - Input: Plant image
+  - Output: Disease prediction, description, and possible solutions
+
+## 🔮 Future Enhancements
+
+### Planned Features
+- **Crop Yield Prediction**: Implementation of models to predict harvest yields based on inputs and historical data
+- **Marketplace Integration**: Enable farmers to sell their produce directly through the platform
+- **Expert Consultation**: Connect farmers with agricultural experts for personalized advice
+- **Image-Based Soil Analysis**: Upload soil images for nutrient deficiency detection
+- **Offline Mode**: Basic functionality in areas with limited connectivity
+
+### Visual Roadmap
+
+[Click here to open the live tldraw](https://www.tldraw.com/f/BUuCEhKtyr_1E9f7FIEzn?d=v-1456.-835.4492.2986.klJ0h-sKVksgtxTOdnRGm)
+
+## 👨‍💻 Contributors
+
+| 👤 Name                   | 🎓 Roll Number     |                       
+|--------------------------|-------------------|
+| 🚀 **Abhishek Bansal**   | `2100820100010`   | 
+| 🛠️ **Abdullah Sabir**    | `2100820100006`   | 
+| 🎨 **Anjali Debnath**    | `2100820100032`   |            
+| 📘 **Shashwat Tewari**   | `2100820100143`   |             
+| 🧠 **Abhishek Srivastava** | `2100820100013` |           
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
